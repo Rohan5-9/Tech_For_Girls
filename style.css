@@ -79,6 +79,15 @@ button:hover {
   text-align: center;
 }
 
+#statusMessage a {
+  text-decoration: none;
+  color: #6a11cb;
+  font-weight: bold;
+}
+#statusMessage a:hover {
+  text-decoration: underline;
+}
+
 .share-section {
   text-align: center;
   margin: 20px 0;
