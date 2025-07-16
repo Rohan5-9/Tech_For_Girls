@@ -16,7 +16,7 @@ shareBtn.addEventListener("click", () => {
     shareCount++;
     counterText.textContent = `Click count: ${shareCount}/5`;
 
-    const webpageLink = "https://yourusername.github.io/tech-for-girls/"; // Replace with your GitHub Pages link
+    const webpageLink = "https://rohan5-9.github.io/Tech_For_Girls/"; 
     const message = `Hey Buddy! 👋\n\nJoin the amazing 🚀 Tech For Girls Community — a platform to empower girls through technology, workshops, mentorship, and mini-projects!\n\nRegister now at: ${webpageLink}\n\nLet’s grow and learn together! 💪✨\n#TechForGirls`;
 
     const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
@@ -38,7 +38,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   const formData = new FormData(form);
-  const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL"; // Replace with actual Apps Script URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyREKyNcc0ak87YqYzconUc9G5LxL5YWKQv0eKzakG3zpZynFWRcSIx1BxyopRnBBNd/exec"; 
 
   try {
     await fetch(scriptURL, { method: 'POST', body: formData });
