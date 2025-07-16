@@ -5,12 +5,17 @@ const submitBtn = document.getElementById("submitBtn");
 const form = document.getElementById("registrationForm");
 const statusMessage = document.getElementById("statusMessage");
 
+// Check if the user already submitted
 const isSubmitted = localStorage.getItem("submitted");
 if (isSubmitted === "true") {
   disableForm();
-  statusMessage.textContent = "🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!";
+  statusMessage.innerHTML = `
+    🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!<br><br>
+    <a href="" onclick="localStorage.removeItem('submitted'); location.reload(); return false;" style="color:#6a11cb; font-weight:bold;">Submit another response</a>
+  `;
 }
 
+// WhatsApp Share Button Click
 shareBtn.addEventListener("click", () => {
   if (shareCount < 5) {
     shareCount++;
@@ -30,19 +35,29 @@ shareBtn.addEventListener("click", () => {
   }
 });
 
+// Form Submission
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   if (shareCount < 5) {
     alert("Please share on WhatsApp 5 times before submitting.");
     return;
   }
 
-  const formData = new FormData(form);
+  const formData = new FormData(form)
   const scriptURL = "https://script.google.com/macros/s/AKfycbyREKyNcc0ak87YqYzconUc9G5LxL5YWKQv0eKzakG3zpZynFWRcSIx1BxyopRnBBNd/exec"; 
 
   try {
-    await fetch(scriptURL, { method: 'POST', body: formData });
-    statusMessage.textContent = "🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!";
+    await fetch(scriptURL, {
+      method: 'POST',
+      body: formData,
+    });
+
+    statusMessage.innerHTML = `
+      🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!<br><br>
+      <a href="" onclick="localStorage.removeItem('submitted'); location.reload(); return false;" style="color:#6a11cb; font-weight:bold;">Submit another response</a>
+    `;
+
     localStorage.setItem("submitted", "true");
     disableForm();
   } catch (error) {
@@ -51,6 +66,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
+// Disable all form inputs and buttons
 function disableForm() {
   const inputs = form.querySelectorAll("input, button");
   inputs.forEach(input => input.disabled = true);
